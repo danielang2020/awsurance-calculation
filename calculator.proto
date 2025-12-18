@@ -21,8 +21,6 @@ message EvaluateRequest{
 }
 
 message EvaluateResponse{
-  string code = 1;
-  string message = 2;//json format
   double result = 3;
 }
 
@@ -32,8 +30,6 @@ message ToLatexRequest{
 }
 
 message ToLatexResponse{
-  string code = 1;
-  string message = 2;//json format
   string result = 3;
 }
 
@@ -43,8 +39,6 @@ message RegisterRequest{
 }
 
 message RegisterResponse{
-  string code = 1;
-  string message = 2;//json format
   string result = 3;
   repeated string arg_names = 4;
 }

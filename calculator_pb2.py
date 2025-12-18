@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x10\x63\x61lculator.proto\x12\x19\x63om.awsurance.calculation\"\'\n\x08Variable\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x01\"e\n\x0f\x45valuateRequest\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x12\n\nexpression\x18\x02 \x01(\t\x12\x31\n\x04vars\x18\x03 \x03(\x0b\x32#.com.awsurance.calculation.Variable\"A\n\x10\x45valuateResponse\x12\x0c\n\x04\x63ode\x18\x01 \x01(\t\x12\x0f\n\x07message\x18\x02 \x01(\t\x12\x0e\n\x06result\x18\x03 \x01(\x01\"1\n\x0eToLatexRequest\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x12\n\nexpression\x18\x02 \x01(\t\"@\n\x0fToLatexResponse\x12\x0c\n\x04\x63ode\x18\x01 \x01(\t\x12\x0f\n\x07message\x18\x02 \x01(\t\x12\x0e\n\x06result\x18\x03 \x01(\t\"2\n\x0fRegisterRequest\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x12\n\nexpression\x18\x02 \x01(\t\"T\n\x10RegisterResponse\x12\x0c\n\x04\x63ode\x18\x01 \x01(\t\x12\x0f\n\x07message\x18\x02 \x01(\t\x12\x0e\n\x06result\x18\x03 \x01(\t\x12\x11\n\targ_names\x18\x04 \x03(\t2\xb8\x02\n\nCalculator\x12\x63\n\x08\x65valuate\x12*.com.awsurance.calculation.EvaluateRequest\x1a+.com.awsurance.calculation.EvaluateResponse\x12`\n\x07toLatex\x12).com.awsurance.calculation.ToLatexRequest\x1a*.com.awsurance.calculation.ToLatexResponse\x12\x63\n\x08register\x12*.com.awsurance.calculation.RegisterRequest\x1a+.com.awsurance.calculation.RegisterResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x10\x63\x61lculator.proto\x12\x19\x63om.awsurance.calculation\"\'\n\x08Variable\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x01\"e\n\x0f\x45valuateRequest\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x12\n\nexpression\x18\x02 \x01(\t\x12\x31\n\x04vars\x18\x03 \x03(\x0b\x32#.com.awsurance.calculation.Variable\"\"\n\x10\x45valuateResponse\x12\x0e\n\x06result\x18\x03 \x01(\x01\"1\n\x0eToLatexRequest\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x12\n\nexpression\x18\x02 \x01(\t\"!\n\x0fToLatexResponse\x12\x0e\n\x06result\x18\x03 \x01(\t\"2\n\x0fRegisterRequest\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x12\n\nexpression\x18\x02 \x01(\t\"5\n\x10RegisterResponse\x12\x0e\n\x06result\x18\x03 \x01(\t\x12\x11\n\targ_names\x18\x04 \x03(\t2\xb8\x02\n\nCalculator\x12\x63\n\x08\x65valuate\x12*.com.awsurance.calculation.EvaluateRequest\x1a+.com.awsurance.calculation.EvaluateResponse\x12`\n\x07toLatex\x12).com.awsurance.calculation.ToLatexRequest\x1a*.com.awsurance.calculation.ToLatexResponse\x12\x63\n\x08register\x12*.com.awsurance.calculation.RegisterRequest\x1a+.com.awsurance.calculation.RegisterResponseb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -36,15 +36,15 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_EVALUATEREQUEST']._serialized_start=88
   _globals['_EVALUATEREQUEST']._serialized_end=189
   _globals['_EVALUATERESPONSE']._serialized_start=191
-  _globals['_EVALUATERESPONSE']._serialized_end=256
-  _globals['_TOLATEXREQUEST']._serialized_start=258
-  _globals['_TOLATEXREQUEST']._serialized_end=307
-  _globals['_TOLATEXRESPONSE']._serialized_start=309
-  _globals['_TOLATEXRESPONSE']._serialized_end=373
-  _globals['_REGISTERREQUEST']._serialized_start=375
-  _globals['_REGISTERREQUEST']._serialized_end=425
-  _globals['_REGISTERRESPONSE']._serialized_start=427
-  _globals['_REGISTERRESPONSE']._serialized_end=511
-  _globals['_CALCULATOR']._serialized_start=514
-  _globals['_CALCULATOR']._serialized_end=826
+  _globals['_EVALUATERESPONSE']._serialized_end=225
+  _globals['_TOLATEXREQUEST']._serialized_start=227
+  _globals['_TOLATEXREQUEST']._serialized_end=276
+  _globals['_TOLATEXRESPONSE']._serialized_start=278
+  _globals['_TOLATEXRESPONSE']._serialized_end=311
+  _globals['_REGISTERREQUEST']._serialized_start=313
+  _globals['_REGISTERREQUEST']._serialized_end=363
+  _globals['_REGISTERRESPONSE']._serialized_start=365
+  _globals['_REGISTERRESPONSE']._serialized_end=418
+  _globals['_CALCULATOR']._serialized_start=421
+  _globals['_CALCULATOR']._serialized_end=733
 # @@protoc_insertion_point(module_scope)
