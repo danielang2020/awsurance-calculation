@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package com.awsurance.calculation;
+
+
+service Calculator {
+  rpc evaluate (EvaluateRequest) returns (EvaluateResponse);
+  rpc toLatex (ToLatexRequest) returns (ToLatexResponse);
+  rpc register (RegisterRequest) returns (RegisterResponse);
+}
+
+message Variable{
+  string name = 1;
+  double value = 2;
+}
+
+message EvaluateRequest{
+  string key = 1;
+  string expression = 2;
+  repeated Variable vars = 3;
+}
+
+message EvaluateResponse{
+  string code = 1;
+  string message = 2;//json format
+  double result = 3;
+}
+
+message ToLatexRequest{
+  string key = 1;
+  string expression = 2;
+}
+
+message ToLatexResponse{
+  string code = 1;
+  string message = 2;//json format
+  string result = 3;
+}
+
+message RegisterRequest{
+  string key = 1;
+  string expression = 2;
+}
+
+message RegisterResponse{
+  string code = 1;
+  string message = 2;//json format
+  string result = 3;
+  repeated string arg_names = 4;
+}
