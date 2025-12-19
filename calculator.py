@@ -47,6 +47,8 @@ SAFE_FUNCTIONS = {
     "discount": discount, "pv_level": pv_level, "fv_level": fv_level
 }
 
+KEY_EXP_ERROR = "key or expression not found"
+
 
 def _compile_expression(expr_text: str) -> Tuple[Tuple[str, ...], Callable, str]:
     expr = sympify(expr_text, locals=SAFE_FUNCTIONS)
@@ -54,11 +56,11 @@ def _compile_expression(expr_text: str) -> Tuple[Tuple[str, ...], Callable, str]
     try:
         fn = lambdify(arg_names, expr, modules="numexpr")
     except Exception as e:
-        LOGGER.error("_compile_expression numexpr", e)
+        LOGGER.error("_compile_expression numexpr", exc_info=e)
         try:
             fn = lambdify(arg_names, expr, modules=["numpy", "math"])
         except Exception as ee:
-            LOGGER.error("_compile_expression numpy_math", ee)
+            LOGGER.error("_compile_expression numpy_math", exc_info=ee)
             raise ee
     ltx = latex(expr)
     return arg_names, fn, ltx
@@ -106,7 +108,7 @@ class InsuranceCalculator(rpc.Calculator):
             elif request.expression:
                 arg_names, fn, _ = _compile_cached(request.expression)
             else:
-                context.set_details("key or expression not found")
+                context.set_details(KEY_EXP_ERROR)
                 context.set_code(grpc.StatusCode.INVALID_ARGUMENT)
                 return pb.EvaluateResponse()
 
@@ -117,7 +119,7 @@ class InsuranceCalculator(rpc.Calculator):
             context.set_code(grpc.StatusCode.INVALID_ARGUMENT)
             return pb.EvaluateResponse()
         except (SympifyError, Exception) as e:
-            LOGGER.error("evaluate", e)
+            LOGGER.error("evaluate", exc_info=e)
             context.set_details(str(e))
             context.set_code(grpc.StatusCode.INTERNAL)
             return pb.EvaluateResponse()
@@ -129,16 +131,16 @@ class InsuranceCalculator(rpc.Calculator):
             elif request.expression:
                 _, _, ltx = _compile_cached(request.expression)
             else:
-                context.set_details("key or expression not found")
+                context.set_details(KEY_EXP_ERROR)
                 context.set_code(grpc.StatusCode.INVALID_ARGUMENT)
                 return pb.ToLatexResponse()
             return pb.ToLatexResponse(result=ltx)
-        except (KeyError) as e:
+        except KeyError as e:
             context.set_details(str(e))
             context.set_code(grpc.StatusCode.INVALID_ARGUMENT)
             return pb.ToLatexResponse()
         except (SympifyError, Exception) as e:
-            LOGGER.error("toLatex", e)
+            LOGGER.error("toLatex", exc_info=e)
             context.set_details(str(e))
             context.set_code(grpc.StatusCode.INTERNAL)
             return pb.ToLatexResponse()
@@ -146,13 +148,13 @@ class InsuranceCalculator(rpc.Calculator):
     def register(self, request: pb.RegisterRequest, context) -> pb.RegisterResponse:
         try:
             if not request.key or not request.expression:
-                context.set_details("key or expression not found")
+                context.set_details(KEY_EXP_ERROR)
                 context.set_code(grpc.StatusCode.INVALID_ARGUMENT)
                 return pb.RegisterResponse()
             arg_names, ltx = REGISTRY.register(request.key, request.expression)
             return pb.RegisterResponse(result=ltx, arg_names=arg_names)
         except (SympifyError, Exception) as e:
-            LOGGER.error("register", e)
+            LOGGER.error("register", exc_info=e)
             context.set_details(str(e))
             context.set_code(grpc.StatusCode.INTERNAL)
             return pb.RegisterResponse()
